@@ -3,8 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from "./menu/menu.component";
 import { SplineViewerComponent } from "./spline-viewer/spline-viewer.component";
 
-
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, MenuComponent, SplineViewerComponent],

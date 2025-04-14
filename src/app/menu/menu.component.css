@@ -1,3 +1,19 @@
-p{
-    color : rgb(163, 192, 255);
-}
+nav {
+    display: flex;
+    gap: 1rem;
+    background-color: #333;
+    padding: 1rem;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: #555;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  a:hover {
+    background-color: #777;
+  }
