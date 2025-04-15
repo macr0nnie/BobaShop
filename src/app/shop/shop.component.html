@@ -1,3 +1,25 @@
 <p>shop works!</p>
-<router-outlet></router-outlet>
 
+<h1> Drink displayed {{drink}}</h1>
+<router-outlet></router-outlet>
+<input type="drink" placeholder="Order the drink">
+<button (click)="OrderDrink()">Click me</button>
+
+<div class="click counter">
+    <button (click)="handleClick()">Click me</button>
+    <p> {{click_counter}}</p>
+</div>
+
+
+
+
+
+
+@if (drink == "Tea") 
+{
+    <p>Wow you really like your tea</p>
+}
+@if (drink == "Orange Juice") 
+{
+    <p>Wow you really like your orange juice</p>
+}
