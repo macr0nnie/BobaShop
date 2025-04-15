@@ -1,6 +1,20 @@
-<nav>
-  <a routerLink="/home">Home</a>
-  <a routerLink="/spline-viewer">spline</a>
-  <a routerLink="/shop">shop</a>
-  <a routerLink="/Home">Home</a>
-</nav>
+
+<div>
+  <p>NavBar</p>
+  <nav>
+    <ul>
+      <li><a routerLink="/shop">shop</a></li>
+      <li><a routerLink="/spline-viewer">bookshelf</a></li>
+      <li><a routerLink="/portfolio">portfolio</a></li>
+      <li><a routerLink="/drinks">drinks</a></li>
+      <li><a routerLink="/about">about</a></li>
+      <li><a routerLink="updatedportfolio">updated porfolio </a></li>
+      <li><a routerLink="/">Home</a></li>
+      <nav>
+        <router-outlet></router-outlet>
+      </nav>
+    </ul>
+  </nav>
+  
+</div>  
+

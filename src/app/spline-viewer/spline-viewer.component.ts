@@ -1,10 +1,15 @@
 // spline-viewer.component.ts
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { Application } from '@splinetool/runtime';
+import { RouterOutlet } from '@angular/router';
+import { NgStyle } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-spline-viewer',
   templateUrl: './spline-viewer.component.html',
+  imports: [RouterOutlet],
+  standalone: true,
   styleUrls: ['./spline-viewer.component.css']
 })
 export class SplineViewerComponent implements AfterViewInit {
