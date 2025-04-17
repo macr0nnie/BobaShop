@@ -1,0 +1,43 @@
+<!-- employee-list.component.html -->
+<div *ngIf="loading">Loading employees...</div>
+
+<div *ngIf="!loading && employees.length === 0">
+  No employees found.
+</div>
+
+<table *ngIf="!loading && employees.length > 0" border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Salary</th>
+      <th>Shift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employees">
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.position }}</td>
+      <td>${{ emp.salary }}</td>
+      <td>{{ emp.shift }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <h3>Find Employee by ID</h3>
+  <input #employeeId type="number" placeholder="Enter Employee ID" />
+  <button (click)="getEmployeeById(employeeId.valueAsNumber)">Get Employee</button>
+</div>
+
+<!-- Display selected employee -->
+<div *ngIf="setSelectedEmployee">
+  <h3>Employee Details</h3>
+  <p><strong>ID:</strong> {{ setSelectedEmployee.id }}</p>
+  <p><strong>Name:</strong> {{ setSelectedEmployee.name }}</p>
+  <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
+  <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary }}</p>
+  <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
+</div>

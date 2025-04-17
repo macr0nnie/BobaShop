@@ -1,11 +1,9 @@
 /* spline-viewer.component.css */
 .spline-container {
+
+ 
     width: 100%;
-    height: 100%;
-  }
-  
-  canvas {
-    width: 100%;
-    height: 100%;
-    outline: none;
+    max-width: 75rem;
+    border: 2px solid rgb(216, 244, 243);
+    border-radius: 7px;
   }
