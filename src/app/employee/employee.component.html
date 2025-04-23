@@ -1,20 +1,8 @@
 <!-- employee-list.component.html -->
 <div *ngIf="loading">Loading employees...</div>
 
-<div *ngIf="!loading && employees.length === 0">
-  No employees found.
-</div>
-
+<div *ngIf="!loading && employees.length === 0">No employees found.</div>
 <table *ngIf="!loading && employees.length > 0" border="1" cellpadding="8">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Salary</th>
-      <th>Shift</th>
-    </tr>
-  </thead>
   <tbody>
     <tr *ngFor="let emp of employees">
       <td>{{ emp.id }}</td>
@@ -25,13 +13,16 @@
     </tr>
   </tbody>
 </table>
+<!-- Add Employee Form -->
+<p>graph works!</p>
 
 <div>
   <h3>Find Employee by ID</h3>
   <input #employeeId type="number" placeholder="Enter Employee ID" />
-  <button (click)="getEmployeeById(employeeId.valueAsNumber)">Get Employee</button>
+  <button (click)="getEmployeeById(employeeId.valueAsNumber)">
+    Get Employee
+  </button>
 </div>
-
 <!-- Display selected employee -->
 <div *ngIf="setSelectedEmployee">
   <h3>Employee Details</h3>
@@ -40,4 +31,5 @@
   <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
   <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary }}</p>
   <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
+
 </div>

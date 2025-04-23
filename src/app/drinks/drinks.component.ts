@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DrinksService } from '../services/drinks.service';
-import { ChartConfiguration, ChartType } from 'chart.js';
-import { NgChartsConfiguration } from 'ng2-charts';
-import { CommonModule } from '@angular/common';
-
 
 interface Drink {
   id: number;
@@ -13,40 +10,56 @@ interface Drink {
 
 @Component({
   selector: 'app-drinks',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './drinks.component.html',
   styleUrls: ['./drinks.component.css']
 })
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
-  loading: boolean = true;
-
-  // Chart configuration
-  public barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-  };
-  public barChartLabels: string[] = [];
-  public barChartData: { data: number[]; label: string }[] = [
-    { data: [], label: 'Drink Prices' }
-  ];
-  public barChartType: ChartType = 'bar';
-
-  constructor(private drinksService: DrinksService) {}
-
+  loading = false;
+  drinkForm: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private drinksService: DrinksService,
+  ) {
+    this.drinkForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      price: ['', [Validators.required, Validators.min(0.01)]]
+    });
+  }
   ngOnInit(): void {
+    this.loadDrinks();
+  }
+  loadDrinks(): void {
+    this.loading = true;
     this.drinksService.getDrinks().subscribe({
-      next: (data) => {
-        this.drinks = data;
+      next: (drinks) => {
+        this.drinks = drinks;
         this.loading = false;
-
-        // Populate chart data
-        this.barChartLabels = this.drinks.map((drink) => drink.name);
-        this.barChartData[0].data = this.drinks.map((drink) => drink.price);
       },
-      error: (err) => {
-        console.error('Error fetching drinks:', err);
-        this.loading = false;
+    });
+  }
+  addDrink(): void {
+    if (this.drinkForm.invalid) {
+      this.markFormGroupTouched(this.drinkForm);
+      return;
+    }
+
+    this.loading = true;
+    const formValue = this.drinkForm.value;
+
+    // Create a clean drink object without circular references
+    const newDrink: Drink = {
+      id: 0, // Let backend assign ID
+      name: formValue.name,
+      price: formValue.price
+    };
+  }
+
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
       }
     });
   }

@@ -17,6 +17,21 @@ export class EmployeeService {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
   //connect to a form 
+  addEmployee(employee: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, employee);
+  }
+  //update an employee by id
+  updateEmployee(id: number, employee: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, employee);
+  }
+  //delete an employee by id
+  deleteEmployee(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  //get an employee by name
+  getEmployeeByName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/name/${name}`);
+  }
 
 }
 

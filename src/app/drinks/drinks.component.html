@@ -1,12 +1,3 @@
-<div *ngIf="loading">Loading drinks...</div>
-<div *ngIf="!loading && drinks.length > 0">
-  <h2>Available Drinks</h2>
-  <ul>
-    <li *ngFor="let drink of drinks">
-      {{ drink.name }} - ${{ drink.price }}
-    </li>
-  </ul>
-</div>
-<div *ngIf="!loading && drinks.length === 0">
-  <p>No drinks available.</p>
+<div class="container">
+<h1> These are the drinks we serve</h1>
 </div>

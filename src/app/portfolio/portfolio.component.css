@@ -6,7 +6,6 @@
   --button_color: #91d0c6;
   --section_heading: linear-gradient(to right, #ffffff, #ffffff);
   --footer_bg_color: #f6f7f6;
-
   scrollbar-color: rgb(135, 231, 209) rgb(140, 90, 206);
   scroll-behavior: smooth;
 }
@@ -15,13 +14,10 @@ img {
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 body {
   margin: 0;
-  padding: 10px;
   background-color: var(--backgroundcolor);
   font-family: "Outfit";
-  margin-left: 150px;
   overflow-x: hidden;
 
   /*background squares*/
@@ -53,7 +49,6 @@ body {
     );
   background-size: 55px 55px;
 }
-
 p {
   font-size: 1.4rem;
   padding: 0%;

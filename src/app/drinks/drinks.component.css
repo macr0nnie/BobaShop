@@ -1,0 +1,30 @@
+.random{
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 5px; 
+    padding : 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 0 0 12px 1px #ff60e2;  /* inner white */
+}
+.drink-form{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: aliceblue;
+    row-gap: 10px;
+}
+.drink-form input[type="text"]{
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+} 
+.drink-form input[type="number"]{
+    width: 100px;
+    padding: 5px;
+    margin-right: 10px;
+}  
+
