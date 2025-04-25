@@ -1,3 +1,22 @@
 <div class="container">
-<h1> These are the drinks we serve</h1>
+  <h1>These are the drinks we serve</h1>
+  <div class="drink-menu">
+    <div class="drink-list">
+      `
+
+      <div class="col-md-4" *ngFor="let drink of drinks">
+        <div class="card mb-4 shadow-sm">
+          <div class="drink-item">
+            <div class="card-body">
+              <h5 class="card-title">{{ drink.name }}</h5>
+              <p class="card-text"><strong>Price:</strong> {{ drink.price }}</p>
+              <button (click)="addToCart(drink)" class="btn btn-primary">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

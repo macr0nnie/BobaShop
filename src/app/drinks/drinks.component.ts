@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DrinksService } from '../services/drinks.service';
+import { CommonModule } from '@angular/common';
+
 
 interface Drink {
   id: number;
@@ -10,20 +12,20 @@ interface Drink {
 
 @Component({
   selector: 'app-drinks',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './drinks.component.html',
-  styleUrls: ['./drinks.component.css']
+  styleUrls: ['./drinks.component.css'],
 })
 export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
   loading = false;
   drinkForm: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    private drinksService: DrinksService,
-  ) {
+  currency = '$'; // Set the currency symbol here
+  constructor(private fb: FormBuilder, private drinksService: DrinksService) {
     this.drinkForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      price: ['', [Validators.required, Validators.min(0.01)]]
+      price: ['', [Validators.required, Validators.min(0.01)]],
     });
   }
   ngOnInit(): void {
@@ -38,6 +40,17 @@ export class DrinksComponent implements OnInit {
       },
     });
   }
+  addToCart(drink: Drink): void {
+    this.drinksService.getDrinkById(drink.id).subscribe({
+      next: () => {
+        alert(`Drink added to cart: ${drink.name}`);
+      },
+      error: (error) => {
+        console.error('Error adding drink to cart:', error);
+      },
+    });
+  }
+
   addDrink(): void {
     if (this.drinkForm.invalid) {
       this.markFormGroupTouched(this.drinkForm);
@@ -51,16 +64,16 @@ export class DrinksComponent implements OnInit {
     const newDrink: Drink = {
       id: 0, // Let backend assign ID
       name: formValue.name,
-      price: formValue.price
+      price: formValue.price,
     };
   }
-
-  private markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
+   markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
       }
     });
   }
+
 }
