@@ -1,8 +1,56 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 body{
   margin: 0 ;
   padding: 0;
   background-color: white;
 }
+*{
+  font-family: "National Park", sans-serif;
+}
+
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  padding: 30px;
+  text-align: center ;
+}
+th{
+  background-color: rgb(249, 163, 163);
+  padding: 10px;
+  border: 1px solid #000000;
+}
+td{
+  padding: 4px;
+}
+
+#th:nth-child(even){
+  background-color: rgb(23, 125, 148);
+}
+
+.container{
+  margin: 0 auto;
+  width: 80%;
+}
+
+button{
+ background-color: rgb(255, 154, 154);
+ border: none;
+ border-radius: 5px; 
+}
+
+.left_align{
+ text-align: left ;
+}
+.center_align{
+ text-align: center ;
+}
+
+button:hover{
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
+
 

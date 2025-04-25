@@ -1,1 +1,17 @@
-<p>update-employee works!</p>
+<H1> Change Employee Information</H1>
+
+<p> Search for the Employee</p>
+<input #employeeId type="number" placeholder="Enter Employee ID" />
+
+<br><br>
+<!--  -->
+<div *ngIf="setSelectedEmployee">
+  <h3>Employee Details</h3>
+  <p><strong>ID:</strong> {{ setSelectedEmployee.id }}</p>
+  <p><strong>Name:</strong> {{ setSelectedEmployee.name }}</p>
+  <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
+  <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary }}</p>
+  <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
+  <br><br>
+    <h3>Update Employee</h3>
+ 

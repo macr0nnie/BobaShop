@@ -1,5 +1,7 @@
-<!-- employee-list.component.html -->
-<div *ngIf="loading">Loading employees...</div>
+<!-- employee-
+ change this to make it look better
+ <div *ngIf="loading">Loading employees...</div>
+ list.component.html -->
 
 <div *ngIf="!loading && employees.length === 0">No employees found.</div>
 <table *ngIf="!loading && employees.length > 0" border="1" cellpadding="8">
@@ -23,6 +25,8 @@
     Get Employee
   </button>
 </div>
+
+
 <!-- Display selected employee -->
 <div *ngIf="setSelectedEmployee">
   <h3>Employee Details</h3>

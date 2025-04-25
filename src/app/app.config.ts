@@ -1,4 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
 
 import { 
   provideRouter, 
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
       eventCoalescing: true,
       runCoalescing: true // Critical for routerLink changes
     }),
+    provideHttpClient(),
     provideRouter(
       routes,
       withComponentInputBinding(), // Enables @Input() from route params

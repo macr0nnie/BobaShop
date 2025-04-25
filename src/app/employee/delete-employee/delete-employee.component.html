@@ -1,1 +1,35 @@
-<p>delete-employee works!</p>
+<div class="container">
+    <h1>Delete an Employee</h1>
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading">Loading employees...</div>
+    <!-- No Employees Found -->
+    <div *ngIf="!loading && employees.length === 0" class="no-employees">
+      No employees found.
+    </div>
+  
+    <!-- Employee Table -->
+    <table *ngIf="!loading && employees.length > 0" class="employee-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th class= "position">Position</th>
+          <th>Salary</th>
+          <th>Shift</th>
+          <th class="action">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees">
+          <td >{{ emp.id }}</td>
+          <td class="left_align">{{ emp.name }}</td>
+          <td class="left_align">{{ emp.position }}</td>
+          <td class="left_align">${{ emp.salary }}</td>
+          <td class="left_align">{{ emp.shift }}</td>
+          <td>
+            <button (click)="deleteEmployee(emp.id)" class="delete-button">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
