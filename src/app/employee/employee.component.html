@@ -1,32 +1,13 @@
-<!-- employee-
- change this to make it look better
- <div *ngIf="loading">Loading employees...</div>
- list.component.html -->
 
-<div *ngIf="!loading && employees.length === 0">No employees found.</div>
-<table *ngIf="!loading && employees.length > 0" border="1" cellpadding="8">
-  <tbody>
-    <tr *ngFor="let emp of employees">
-      <td>{{ emp.id }}</td>
-      <td>{{ emp.name }}</td>
-      <td>{{ emp.position }}</td>
-      <td>${{ emp.salary }}</td>
-      <td>{{ emp.shift }}</td>
-    </tr>
-  </tbody>
-</table>
-<!-- Add Employee Form -->
-<p>graph works!</p>
-
-<div>
+<div class="container">
+ <h1>Search For Employee</h1>
+ <div class="find_employee">
   <h3>Find Employee by ID</h3>
   <input #employeeId type="number" placeholder="Enter Employee ID" />
   <button (click)="getEmployeeById(employeeId.valueAsNumber)">
     Get Employee
   </button>
 </div>
-
-
 <!-- Display selected employee -->
 <div *ngIf="setSelectedEmployee">
   <h3>Employee Details</h3>
@@ -35,5 +16,24 @@
   <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
   <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary }}</p>
   <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
+</div>
+<div *ngIf="!loading && employees.length === 0">No employees found.</div>
+<table *ngIf="!loading && employees.length > 0" >
+  <tbody>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Salary</th>
+      <th>Shift</th>
+    <tr *ngFor="let emp of employees">
+      <td>{{ emp.id }}</td>
+      <td class="left_align">{{ emp.name }}</td>
+      <td class="left_align">{{ emp.position }}</td>
+      <td class="left_align">${{ emp.salary }}</td>
+      <td class="left_align">{{ emp.shift }}</td>
+    </tr>
+  </tbody>
+</table>
+
 
 </div>
