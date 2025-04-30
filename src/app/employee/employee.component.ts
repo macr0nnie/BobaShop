@@ -12,7 +12,6 @@ interface Employee {
   salary: number;
   shift: string;
 }
-
 @Component({
   selector: 'app-employee',
   standalone: true,
@@ -66,7 +65,6 @@ export class EmployeeComponent implements OnInit {
   onSearchChange(term: string): void {
     this.searchSubject.next(term);
   }
-
   filterEmployees(): void {
     if (!this.searchTerm) {
       this.filteredEmployees = [...this.employees];
@@ -84,10 +82,6 @@ export class EmployeeComponent implements OnInit {
       this.sortEmployees(this.currentSortColumn);
     }
   }
-
-
-
-
 
   sortEmployees(column: keyof Employee): void {
     if (this.currentSortColumn === column) {
