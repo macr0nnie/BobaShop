@@ -24,16 +24,7 @@
     border-radius: 4px;
     font-size: 14px;
   }
-  
-  button {
-    padding: 8px 16px;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+
   
   .employee-details {
     background: #f8f0f0;
@@ -61,16 +52,7 @@
     position: relative;
     font-weight: 600;
   }
-  
- 
-  
 
-  .loading, .no-results {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-    font-size: 16px;
-  }
   
   @media (max-width: 768px) {
     .search-section {
@@ -86,3 +68,4 @@
       overflow-x: auto;
     }
   }
+  

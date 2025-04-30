@@ -12,16 +12,6 @@
       >
       <button (click)="filterEmployees()">Search</button>
     </div>
-    
-    <div class="id-search">
-      <input 
-        #employeeId 
-        type="number" 
-        placeholder="Enter Employee ID" 
-        (keyup.enter)="getEmployeeById(employeeId.valueAsNumber)"
-      >
-      <button (click)="getEmployeeById(employeeId.valueAsNumber)">Find by ID</button>
-    </div>
   </div>
 
   <!-- Selected Employee Display -->

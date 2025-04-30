@@ -72,7 +72,6 @@ export class EmployeeComponent implements OnInit {
       this.filteredEmployees = [...this.employees];
       return;
     }
-
     const term = this.searchTerm.toLowerCase();
     this.filteredEmployees = this.employees.filter(emp => 
       emp.name.toLowerCase().includes(term) ||
@@ -81,12 +80,14 @@ export class EmployeeComponent implements OnInit {
       emp.id.toString().includes(term) ||
       emp.salary.toString().includes(term)
     );
-
-    // Reapply sorting after filtering
     if (this.currentSortColumn) {
       this.sortEmployees(this.currentSortColumn);
     }
   }
+
+
+
+
 
   sortEmployees(column: keyof Employee): void {
     if (this.currentSortColumn === column) {
@@ -95,7 +96,6 @@ export class EmployeeComponent implements OnInit {
       this.currentSortColumn = column;
       this.sortDirection = 'asc';
     }
-
     this.filteredEmployees.sort((a, b) => {
       const valA = a[column];
       const valB = b[column];
@@ -108,31 +108,6 @@ export class EmployeeComponent implements OnInit {
         return this.sortDirection === 'asc' 
           ? (valA as number) - (valB as number) 
           : (valB as number) - (valA as number);
-      }
-    });
-  }
-
-  getEmployeeById(id: number): void {
-    this.employeeService.getEmployeeById(id).subscribe({
-      next: (data) => {
-        this.setSelectedEmployee = data;
-      },
-      error: (err) => {
-        console.error('Error fetching employee:', err);
-      }
-    });
-  }
-
-  addEmployee(employee: Employee): void {
-    this.employeeService.addEmployee(employee).subscribe({
-      next: (data) => {
-        this.employees.push(data);
-        this.filteredEmployees.push(data);
-        // Reapply filters/sorting
-        this.filterEmployees();
-      },
-      error: (err) => {
-        console.error('Error adding employee:', err);
       }
     });
   }

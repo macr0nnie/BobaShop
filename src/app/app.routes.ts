@@ -10,7 +10,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
 import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
 import { NewEmployeeComponent } from './employee/new-employee/new-employee.component';
-
+import { AddNewDrinkComponent } from './add-new-drink/add-new-drink.component';
 export const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'spline-viewer', component: SplineViewerComponent },
@@ -23,5 +23,7 @@ export const routes: Routes = [
   { path: 'employee/new-employee', component: NewEmployeeComponent },
   { path: 'employee/update', component: UpdateEmployeeComponent },
   { path: 'employee/delete', component: DeleteEmployeeComponent },
+  { path: 'new-drink', component: AddNewDrinkComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
