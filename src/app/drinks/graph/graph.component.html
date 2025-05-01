@@ -1,2 +1,68 @@
 <div class="container">
-<p> Sorted Employees</p>
+  <h3>Employee Data</h3>
+
+  <div class="table-container">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>
+            Name
+            <input
+              type="text"
+              [(ngModel)]="filter.name"
+              (ngModelChange)="applyFiltersAuto()"
+              class="form-control header-filter"
+              placeholder="Filter by name"
+            />
+          </th>
+          <th>
+            Position
+            <input
+              type="text"
+              [(ngModel)]="filter.position"
+              (ngModelChange)="applyFiltersAuto()"
+              class="form-control header-filter"
+              placeholder="Filter by position"
+            />
+          </th>
+          <th>
+            Salary
+            <input
+              type="number"
+              [(ngModel)]="filter.salary"
+              (ngModelChange)="applyFiltersAuto()"
+              class="form-control header-filter"
+              placeholder="Min salary"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of filteredEmployees">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.position }}</td>
+          <td>${{ employee.salary.toFixed(2) }}</td>
+          <td>{{ employee.shift }}</td>
+        </tr>
+        <tr *ngIf="filteredEmployees.length === 0">
+          <td colspan="5" class="no-data">
+            No employees match your search criteria
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="filter-actions">
+    <button class="btn btn-secondary" (click)="clearFilters()">
+      Clear Filters
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Loading data...</p>
+  </div>
+</div>

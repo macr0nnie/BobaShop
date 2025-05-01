@@ -11,6 +11,7 @@ import { DeleteEmployeeComponent } from './employee/delete-employee/delete-emplo
 import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
 import { NewEmployeeComponent } from './employee/new-employee/new-employee.component';
 import { AddNewDrinkComponent } from './add-new-drink/add-new-drink.component';
+import { GraphComponent } from './drinks/graph/graph.component';
 export const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'spline-viewer', component: SplineViewerComponent },
@@ -24,6 +25,7 @@ export const routes: Routes = [
   { path: 'employee/update', component: UpdateEmployeeComponent },
   { path: 'employee/delete', component: DeleteEmployeeComponent },
   { path: 'new-drink', component: AddNewDrinkComponent },
+  { path: 'graph', component: GraphComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];

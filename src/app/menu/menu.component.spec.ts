@@ -11,7 +11,7 @@ describe('MenuComponent', () => {
       imports: [MenuComponent]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
