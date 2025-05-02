@@ -4,6 +4,21 @@
   margin: 0 auto;
 }
 
+/* Add keyframes animations for the flower glow effect */
+@keyframes flowerGlow {
+  0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)); }
+  50% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7)); }
+  100% { filter: drop-shadow(0 0 5px rgb(255, 255, 255)); }
+}
+
+@keyframes gentleSway {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .about-section {
   margin-bottom: 30px;
   padding: 15px;
@@ -11,11 +26,14 @@
   border-radius: 8px;
 }
 
+/* Add some ambient nature animation to the game area */
 .game-container {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .game-container h2 {
@@ -74,12 +92,20 @@
   justify-content: center;
 }
 
+/* Enhance the flower selection canvas with a soft hover glow */
 .flower-selection canvas {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
   cursor: pointer;
   max-width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.flower-selection canvas:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(76, 175, 80, 0.3);
 }
 
 .vase-selection {
@@ -89,6 +115,7 @@
   justify-content: center;
 }
 
+/* Enhance vase selections with better visual effects */
 .vase-item {
   display: flex;
   flex-direction: column;
@@ -97,19 +124,28 @@
   border: 2px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
   width: 80px;
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
 }
 
 .vase-item:hover {
   border-color: #8bc34a;
-  transform: translateY(-3px);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
 }
 
 .vase-item.selected {
   border-color: #ff9800;
-  background-color: rgba(255, 152, 0, 0.1);
+  background: linear-gradient(to bottom, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.05));
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 5px rgba(255, 152, 0, 0.3); }
+  50% { box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
+  100% { box-shadow: 0 0 5px rgba(255, 152, 0, 0.3); }
 }
 
 .vase-name {
@@ -124,6 +160,15 @@
   border-radius: 20px 20px 10px 10px;
   border: 1px solid #333;
   position: relative;
+  transition: all 0.3s;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.2) 80%, rgba(255, 255, 255, 0) 90%);
+  background-size: 200% 200%;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 200%; }
+  100% { background-position: 0% 0%; }
 }
 
 .vase-preview::before {
@@ -135,6 +180,11 @@
   height: 20px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.vase-item:hover .vase-preview {
+  transform: scale(1.1);
 }
 
 .bouquet-display {
@@ -144,6 +194,7 @@
   flex-direction: column;
 }
 
+/* Enhanced bouquet canvas with subtle animations */
 .bouquet-canvas-container {
   flex-grow: 1;
   border: 2px dashed #ccc;
@@ -156,6 +207,13 @@
   justify-content: center;
   margin-bottom: 20px;
   position: relative;
+  background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+  transition: all 0.3s ease;
+}
+
+.bouquet-canvas-container:hover {
+  border-color: #4caf50;
+  box-shadow: inset 0 0 20px rgba(76, 175, 80, 0.1);
 }
 
 .bouquet-canvas-container.empty {
@@ -165,8 +223,9 @@
 .bouquet-canvas-container canvas {
   max-width: 100%;
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: rgba(249, 249, 249, 0.7);
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .empty-message {
@@ -204,36 +263,61 @@
   border-radius: 4px;
 }
 
+/* Enhance buttons with prettier animations */
 button {
-  padding: 10px;
+  padding: 12px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: rotate(30deg);
+  transition: transform 0.8s;
+}
+
+button:hover::after {
+  transform: rotate(30deg) translate(50%, 50%);
 }
 
 button:first-of-type {
-  background-color: #4caf50;
+  background: linear-gradient(to right, #4caf50, #45a049);
   color: white;
 }
 
 button:first-of-type:hover:not(:disabled) {
-  background-color: #3e8e41;
+  background: linear-gradient(to right, #43a047, #388e3c);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
 button:first-of-type:disabled {
-  background-color: #cccccc;
+  background: linear-gradient(to right, #cccccc, #bbbbbb);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 button:last-of-type {
-  background-color: #f44336;
+  background: linear-gradient(to right, #f44336, #e53935);
   color: white;
 }
 
 button:last-of-type:hover {
-  background-color: #d32f2f;
+  background: linear-gradient(to right, #e53935, #d32f2f);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
 }
 
 .saved-bouquets {
@@ -254,6 +338,7 @@ button:last-of-type:hover {
   justify-content: center;
 }
 
+/* Enhanced saved bouquet animations */
 .saved-bouquet {
   padding: 15px;
   border: 1px solid #ddd;
@@ -261,12 +346,14 @@ button:last-of-type:hover {
   width: 200px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: linear-gradient(to bottom, #ffffff, #f9f9f9);
 }
 
 .saved-bouquet:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  border-color: #673ab7;
 }
 
 .saved-bouquet h4 {
