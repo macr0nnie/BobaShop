@@ -1,89 +1,9 @@
 <div class="container">
     <h3>Employee Data</h3>
   
-    <div class="filter-summary">
-      <div class="filter-badge" *ngIf="recordCount !== employees.length">
-        Showing {{ recordCount }} of {{ employees.length }} employees
-      </div>
-      <div class="filter-method">
-        <label class="toggle-label" for="frontend-filtering">
-          <input
-            id="frontend-filtering"
-            type="checkbox"
-            [(ngModel)]="useFrontendFiltering"
-            (change)="applyFiltersInternal()"
-          />
-          <span class="toggle-text">Use frontend filtering</span>
-        </label>
-      </div>
-    </div>
-  
+ 
     <div class="table-container">
       <table class="employee-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>
-              <label for="name-filter" class="column-header">Name</label>
-              <input
-                id="name-filter"
-                type="text"
-                [(ngModel)]="filter.name"
-                (input)="applyFiltersAuto()"
-                class="form-control header-filter"
-                placeholder="Filter by name"
-                autocomplete="off"
-              />
-            </th>
-            <th>
-              <label for="position-filter" class="column-header">Position</label>
-              <input
-                id="position-filter"
-                type="text"
-                [(ngModel)]="filter.position"
-                (input)="applyFiltersAuto()"
-                class="form-control header-filter"
-                placeholder="Filter by position"
-                autocomplete="off"
-              />
-            </th>
-            <th>
-              <label for="salary-filter" class="column-header">Salary</label>
-              <div class="salary-filters">
-                <input
-                  id="salary-filter"
-                  type="range"
-                  [(ngModel)]="filter.salary"
-                  (input)="applyFiltersAuto()"
-                  [min]="salaryRange.min"
-                  [max]="salaryRange.max"
-                  class="form-control header-filter slider"
-                  [attr.aria-valuemin]="salaryRange.min"
-                  [attr.aria-valuemax]="salaryRange.max"
-                  [attr.aria-valuenow]="filter.salary || salaryRange.min"
-                />
-                <span class="range-value"
-                  >${{ filter.salary || salaryRange.min }}</span
-                >
-              </div>
-            </th>
-            <th>
-              <label for="shift-filter" class="column-header">Shift</label>
-              <select
-                id="shift-filter"
-                [(ngModel)]="filter.shift"
-                (change)="applyFiltersAuto()"
-                class="form-control header-filter"
-                aria-label="Filter by shift"
-              >
-                <option value="">All Shifts</option>
-                <option *ngFor="let shift of availableShifts" [value]="shift">
-                  {{ shift }}
-                </option>
-              </select>
-            </th>
-          </tr>
-        </thead>
         <tbody>
           <tr *ngFor="let employee of filteredEmployees">
             <td>{{ employee.id }}</td>
@@ -100,19 +20,4 @@
         </tbody>
       </table>
     </div>
-  
-    <div class="filter-actions">
-      <button
-        class="btn btn-secondary"
-        (click)="clearFilters()"
-        aria-label="Clear all filters"
-      >
-        Clear Filters
-      </button>
-    </div>
-  
-    <div *ngIf="loading" class="loading-overlay" aria-live="polite" role="status">
-      <div class="spinner"></div>
-      <p>Loading data...</p>
-    </div>
-  </div>
+</div>

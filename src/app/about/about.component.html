@@ -1,5 +1,84 @@
+<div class="page-container">
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p>Welcome to the about page</p>
+    </div>
 
-<div class="block">
-    <h1>About Us</h1>
-    <p>Welcome to the about page</p>
+    <div class="game-container">
+        <h2>Flower Bouquet Arrangement Game</h2>
+        <p>Create beautiful flower bouquets by selecting flowers and a vase!</p>
+
+        <div class="game-area">
+            <div class="game-panel">
+                <div class="score-display">
+                    <h3>Score: {{ score }}</h3>
+                </div>
+                
+                <div class="flowers-section">
+                    <h3>Choose Flowers (max {{ maxBouquetSize }})</h3>
+                    <div class="flower-selection">
+                        <canvas #flowerCanvas width="400" height="300" (click)="onFlowerCanvasClick($event)"></canvas>
+                    </div>
+                </div>
+
+                <div class="vases-section">
+                    <h3>Choose a Vase</h3>
+                    <div class="vase-selection">
+                        <div class="vase-item" *ngFor="let vase of vases" 
+                            [class.selected]="vase.selected"
+                            (click)="selectVase(vase)">
+                            <div class="vase-name">{{ vase.name }}</div>
+                            <div class="vase-preview" [style.background-color]="vase.color"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bouquet-display">
+                <h3>Your Bouquet</h3>
+                <div class="bouquet-canvas-container" [class.empty]="!bouquetFlowers.length && !selectedVase">
+                    <canvas #bouquetCanvas width="400" height="400" (click)="onBouquetCanvasClick($event)"></canvas>
+                    <div class="empty-message" *ngIf="!bouquetFlowers.length && !selectedVase">
+                        Select flowers and a vase to create your bouquet!
+                    </div>
+                </div>
+
+                <div class="bouquet-actions">
+                    <div class="name-input">
+                        <label for="bouquet-name">Name your bouquet:</label>
+                        <input type="text" id="bouquet-name" [(ngModel)]="bouquetName" placeholder="My Beautiful Bouquet">
+                    </div>
+                    <button (click)="saveBouquet()" [disabled]="bouquetFlowers.length === 0 || !selectedVase || !bouquetName.trim()">
+                        Save Bouquet
+                    </button>
+                    <button (click)="resetGame()">
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="saved-bouquets" *ngIf="savedBouquets.length > 0">
+            <h3>Your Gallery of Bouquets</h3>
+            <div class="bouquet-gallery">
+                <div class="saved-bouquet" *ngFor="let saved of savedBouquets">
+                    <h4>{{ saved.name }}</h4>
+                    <div class="saved-bouquet-display">
+                        <div class="saved-info">
+                            <p>{{ saved.flowers.length }} flowers in a {{ saved.vase.name }}</p>
+                        </div>
+                        <div class="saved-preview">
+                            <div class="vase-color" [style.background-color]="saved.vase.color"></div>
+                            <div class="flower-colors">
+                                <span *ngFor="let flower of saved.flowers" 
+                                      class="flower-color-dot" 
+                                      [style.background-color]="flower.type.color">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
