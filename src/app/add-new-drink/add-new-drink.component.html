@@ -1,1 +1,79 @@
-<p>add-new-drink works!</p>
+<div class="container">
+  <h1>New Drink Designer</h1>
+  
+  <!-- Success message for drink deletion -->
+  <div *ngIf="showDeleteMessage" class="alert alert-success">
+    {{ deleteMessage }}
+  </div>
+
+  <form [formGroup]="drinkForm" (ngSubmit)="addDrink()">
+    <div class="form-group">
+      <label for="name">Drink Name</label>
+      <input id="name" type="text" formControlName="name" class="form-control" placeholder="Enter drink name">
+      <div *ngIf="drinkForm.get('name')?.touched && drinkForm.get('name')?.invalid" class="text-danger">
+        <small *ngIf="drinkForm.get('name')?.errors?.['required']">Name is required.</small>
+        <small *ngIf="drinkForm.get('name')?.errors?.['minlength']">Name must be at least 2 characters long.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" class="form-control" placeholder="Enter price">
+      <div *ngIf="drinkForm.get('price')?.touched && drinkForm.get('price')?.invalid" class="text-danger">
+        <small *ngIf="drinkForm.get('price')?.errors?.['required']">Price is required.</small>
+        <small *ngIf="drinkForm.get('price')?.errors?.['min']">Price must be greater than 0.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" class="form-control" placeholder="Enter image URL">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Add Drink</button>
+  </form>
+
+  
+  <div *ngIf="recentlyAdded" class="mt-4">
+    <h3>Recently Added</h3>
+    <div class="card bg-light mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ recentlyAdded.name }}</h5>
+        <p class="card-text">Price: {{ currency }}{{ recentlyAdded.price.toFixed(2) }}</p>
+        <button class="btn btn-danger" (click)="deleteDrink(recentlyAdded.id, recentlyAdded.name)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drinks list -->
+  <div class="mt-4">
+    <h3>Existing Drinks</h3>
+    <p *ngIf="drinks.length === 0">No drinks available.</p>
+    
+    <div class="table-responsive" *ngIf="drinks.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let drink of drinks">
+            <td>{{ drink.name }}</td>
+            <td>{{ currency }}{{ drink.price.toFixed(2) }}</td>
+            <td>
+              <button (click)="deleteDrink(drink.id, drink.name)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

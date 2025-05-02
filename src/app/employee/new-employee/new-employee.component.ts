@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../services/employee.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 interface Employee {
   id: number;
@@ -14,7 +15,7 @@ interface Employee {
 
 @Component({
   selector: 'app-new-employee',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule],
   standalone: true,
   templateUrl: './new-employee.component.html',
   styleUrls: ['./new-employee.component.css'],
@@ -22,7 +23,7 @@ interface Employee {
 export class NewEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
+  constructor(private fb: FormBuilder, private employeeService: EmployeeService, private router: Router) {
     // Initialize the form group
     this.employeeForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -43,6 +44,12 @@ export class NewEmployeeComponent implements OnInit {
         next: (data) => {
           console.log('Employee added successfully:', data);
           this.employeeForm.reset(); // Reset the form after submission
+          //naviagate to employee list or show success message
+          // You can use Angular Router to navigate to another component if needed
+          this.router.navigate(['/employee']);
+          alert('Employee added successfully!');
+          
+          
         },
         error: (err) => {
           console.error('Error adding employee:', err);

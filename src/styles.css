@@ -1,56 +1,69 @@
-
-@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-body{
-  margin: 0 ;
+@import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+body {
+  margin: 0;
   padding: 0;
   background-color: white;
 }
-*{
+* {
   font-family: "National Park", sans-serif;
 }
 
-
-table{
+table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #000000;
   padding: 30px;
-  text-align: center ;
+  text-align: center;
 }
-th{
+th {
   background-color: rgb(249, 163, 163);
   padding: 10px;
-  border: 1px solid #000000;
+  border-bottom: #000000 solid 1px;
 }
-td{
+td {
   padding: 4px;
 }
 
-#th:nth-child(even){
+#th:nth-child(even) {
   background-color: rgb(23, 125, 148);
 }
-
-.container{
+.container {
   margin: 0 auto;
   width: 80%;
 }
 
-button{
- background-color: rgb(255, 154, 154);
- border: none;
- border-radius: 5px; 
+button {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  border: none; /* Remove the default border */
+  border-radius: 30px; /* Rounded corners */
+  overflow: hidden; /* Ensure the pseudo-element respects the border-radius */
+  z-index: 1;
+}
+button:active {
+  transform: translateY(2px); /* Move the button down slightly */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow to simulate depth */
+  background-color: rgb(85, 170, 78); /* Slightly darker background for pressed effect */
+}
+button::before {
+  content: '';
+  position: absolute;
+  top: -5px; /* Adjust to match the border width */
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 30px; /* Match the button's border-radius */
+  background: linear-gradient(to right, #f6d365, #ffc1f4); /* Gradient border */
+  z-index: -1; /* Place behind the button content */
 }
 
-.left_align{
- text-align: left ;
+.left_align {
+  text-align: left;
 }
-.center_align{
- text-align: center ;
+.center_align {
+  text-align: center;
 }
-
-button:hover{
-  background-color: rgb(255, 0, 0);
+button:hover {
+  background-color: rgb(98, 207, 84);
   color: white;
 }
-
-

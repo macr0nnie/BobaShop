@@ -1,39 +1,63 @@
-<!-- employee-
- change this to make it look better
- <div *ngIf="loading">Loading employees...</div>
- list.component.html -->
+<div class="container">
+  <h1>Employee Management</h1>
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (ngModelChange)="onSearchChange($event)"
+        placeholder="Search employees..."
+      >
+      <button (click)="filterEmployees()">Search</button>
+    </div>
+  </div>
 
-<div *ngIf="!loading && employees.length === 0">No employees found.</div>
-<table *ngIf="!loading && employees.length > 0" border="1" cellpadding="8">
-  <tbody>
-    <tr *ngFor="let emp of employees">
-      <td>{{ emp.id }}</td>
-      <td>{{ emp.name }}</td>
-      <td>{{ emp.position }}</td>
-      <td>${{ emp.salary }}</td>
-      <td>{{ emp.shift }}</td>
-    </tr>
-  </tbody>
-</table>
-<!-- Add Employee Form -->
-<p>graph works!</p>
+  <!-- Selected Employee Display -->
+  <div *ngIf="setSelectedEmployee" class="employee-details">
+    <h3>Employee Details</h3>
+    <p><strong>ID:</strong> {{ setSelectedEmployee.id }}</p>
+    <p><strong>Name:</strong> {{ setSelectedEmployee.name }}</p>
+    <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
+    <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary | number }}</p>
+    <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
+  </div>
 
-<div>
-  <h3>Find Employee by ID</h3>
-  <input #employeeId type="number" placeholder="Enter Employee ID" />
-  <button (click)="getEmployeeById(employeeId.valueAsNumber)">
-    Get Employee
-  </button>
-</div>
+  <!-- Employees Table -->
+  <div *ngIf="loading" class="loading">Loading employees...</div>
+  
+  <div *ngIf="!loading && filteredEmployees.length === 0" class="no-results">
+    No employees found matching your criteria.
+  </div>
 
-
-<!-- Display selected employee -->
-<div *ngIf="setSelectedEmployee">
-  <h3>Employee Details</h3>
-  <p><strong>ID:</strong> {{ setSelectedEmployee.id }}</p>
-  <p><strong>Name:</strong> {{ setSelectedEmployee.name }}</p>
-  <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
-  <p><strong>Salary:</strong> ${{ setSelectedEmployee.salary }}</p>
-  <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
-
+  <table *ngIf="!loading && filteredEmployees.length > 0">
+    <thead>
+      <tr>
+        <th (click)="sortEmployees('id')">
+          ID <span class="sort-icon">{{ getSortIcon('id') }}</span>
+        </th>
+        <th (click)="sortEmployees('name')">
+          Name <span class="sort-icon">{{ getSortIcon('name') }}</span>
+        </th>
+        <th (click)="sortEmployees('position')">
+          Position <span class="sort-icon">{{ getSortIcon('position') }}</span>
+        </th>
+        <th (click)="sortEmployees('salary')">
+          Salary <span class="sort-icon">{{ getSortIcon('salary') }}</span>
+        </th>
+        <th (click)="sortEmployees('shift')">
+          Shift <span class="sort-icon">{{ getSortIcon('shift') }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of filteredEmployees">
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.position }}</td>
+        <td>${{ emp.salary | number }}</td>
+        <td>{{ emp.shift }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

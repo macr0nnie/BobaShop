@@ -1,3 +1,21 @@
 <div class="container">
-<h1> These are the drinks we serve</h1>
+  <div *ngIf="loading">Loading drinks...</div>
+
+  <div *ngIf="!loading && drinks.length === 0">No drinks available.</div>
+
+  <div *ngIf="!loading && drinks.length > 0" class="drinks-menu">
+    <div *ngFor="let drink of drinks" class="drink-card">
+      <img src="line.jpg" alt="" />
+      <img
+        src="{{ drink.imageUrl }}"
+        alt="{{ drink.name }}"
+        class="drink-image"
+        *ngIf="drink.imageUrl"
+      />
+      <div class="drink-info">
+        <h3>{{ drink.name }}</h3>
+        <p>{{ currency }}{{ drink.price }}</p>
+      </div>
+    </div>
+  </div>
 </div>

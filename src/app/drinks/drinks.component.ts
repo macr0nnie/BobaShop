@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { DrinksService } from '../services/drinks.service';
 
 interface Drink {
   id: number;
   name: string;
+  imageUrl?: string;
   price: number;
 }
 
 @Component({
   selector: 'app-drinks',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './drinks.component.html',
   styleUrls: ['./drinks.component.css']
 })
@@ -17,18 +21,23 @@ export class DrinksComponent implements OnInit {
   drinks: Drink[] = [];
   loading = false;
   drinkForm: FormGroup;
+  currency: string = '$';
+
   constructor(
     private fb: FormBuilder,
     private drinksService: DrinksService,
   ) {
     this.drinkForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      price: ['', [Validators.required, Validators.min(0.01)]]
+      price: ['', [Validators.required, Validators.min(0.01)]],
+      imageUrl: ['']
     });
   }
+
   ngOnInit(): void {
     this.loadDrinks();
   }
+
   loadDrinks(): void {
     this.loading = true;
     this.drinksService.getDrinks().subscribe({
@@ -38,29 +47,8 @@ export class DrinksComponent implements OnInit {
       },
     });
   }
-  addDrink(): void {
-    if (this.drinkForm.invalid) {
-      this.markFormGroupTouched(this.drinkForm);
-      return;
-    }
 
-    this.loading = true;
-    const formValue = this.drinkForm.value;
 
-    // Create a clean drink object without circular references
-    const newDrink: Drink = {
-      id: 0, // Let backend assign ID
-      name: formValue.name,
-      price: formValue.price
-    };
-  }
-
-  private markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-      if (control instanceof FormGroup) {
-        this.markFormGroupTouched(control);
-      }
-    });
-  }
 }
+
+
