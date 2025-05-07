@@ -45,17 +45,6 @@ button:active {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adjust shadow to simulate depth */
   background-color: rgb(85, 170, 78); /* Slightly darker background for pressed effect */
 }
-button::before {
-  content: '';
-  position: absolute;
-  top: -5px; /* Adjust to match the border width */
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border-radius: 30px; /* Match the button's border-radius */
-  background: linear-gradient(to right, #f6d365, #ffc1f4); /* Gradient border */
-  z-index: -1; /* Place behind the button content */
-}
 
 .left_align {
   text-align: left;

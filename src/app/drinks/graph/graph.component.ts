@@ -19,7 +19,7 @@ export class GraphComponent implements OnInit {
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
   loading: boolean = false;
-
+  
 
   constructor(
     private employeeService: EmployeeService,
