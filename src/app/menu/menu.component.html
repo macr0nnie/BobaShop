@@ -1,18 +1,37 @@
-<div class="menu">
-  <nav>
+<div class="nav-container">
+  <nav class="menu">
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/shop">shop</a></li>
-      <li><a routerLink="/spline-viewer">bookshelf</a></li>
-      <li><a routerLink="/portfolio">portfolio</a></li>
-      <li><a routerLink="/drinks">drinks</a></li>
-      <li><a routerLink="/about">about</a></li>
-      <li><a routerLink="/employee">employee_api</a></li>
-      <li><a routerLink="/employee/delete">delete employee</a></li>
-      <li><a routerLink="/employee/update">update employee</a></li>
-      <li><a routerLink="/employee/new-employee">new employee</a></li>
-      <li><a routerLink="/new-drink">design a new drink</a></li>
-      <li><a routerLink="/graph">graph</a></li>
+      <li><a routerLink="/" routerLinkActive="active ">Home</a></li>
+      <li><a routerLink="/shop" routerLinkActive="active">Shop</a></li>
+      <li><a routerLink="/spline-viewer" routerLinkActive="active">Bookshelf</a></li>
+      <li><a routerLink="/portfolio" routerLinkActive="active">Portfolio</a></li>
+      
+      <!-- Drinks Dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle">Drinks <span class="arrow">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a routerLink="/drinks" routerLinkActive="active">All Drinks</a></li>
+          <li><a routerLink="/new-drink" routerLinkActive="active">Design a New Drink</a></li>
+          <li><a routerLink="/graph" routerLinkActive="active">Drink Analytics</a></li>
+        </ul>
+      </li>
+      
+      <!-- Employee Dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle">Employees <span class="arrow">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a routerLink="/employee" routerLinkActive="active">Employee API</a></li>
+          <li><a routerLink="/employee/new-employee" routerLinkActive="active">Add Employee</a></li>
+          <li><a routerLink="/employee/update" routerLinkActive="active">Update Employee</a></li>
+          <li><a routerLink="/employee/delete" routerLinkActive="active">Delete Employee</a></li>
+        </ul>
+      </li>
+      
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
     </ul>
   </nav>
+  <!-- Moon and star decorations -->
+  <span class="menu-star star1">★</span>
+  <span class="menu-star star2">✦</span>
+  <span class="menu-moon"></span>
 </div>

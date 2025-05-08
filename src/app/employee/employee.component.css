@@ -184,7 +184,6 @@ th {
   color: #444;
   cursor: pointer;
   position: relative;
-  user-select: none;
 }
 
 tbody tr {

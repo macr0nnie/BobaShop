@@ -1,85 +1,196 @@
-/* Professional Menu Bar with Consistent Styling */
-
-/* Base styles */
-.menu {
-  font-family: 'Poppins', 'Roboto', sans-serif;
+/* Aesthetic Menu Bar with Moon and Stars Theme */
+body {
+  font-family: 'Outfit', 'League Spartan', sans-serif;
+  background-color: #f3f3f3;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
 /* Main Navigation Container */
-.menu nav {
-  background: linear-gradient(to right, #8e44ad, #9b59b6);
-  padding: 12px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 8px 8px;
+.nav-container {
+  background: linear-gradient(to right, #b59ae1, #d8a5ee);
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(181, 154, 225, 0.3);
+  border-radius: 0 0 15px 15px;
   position: relative;
-  z-index: 10;
+  z-index: 100; /* Increased z-index to prevent dropdown menu issues */
+  overflow: visible; /* Changed from hidden to visible to show dropdowns */
 }
 
 /* Navigation List */
-.menu nav ul {
+ul {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 8px;
+  position: relative;
 }
 
 /* Navigation Items */
-.menu nav ul li {
+ul li {
   position: relative;
-  margin: 0;
+  margin: 0 15px;
   padding: 0;
-  transition: transform 0.2s ease;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 /* Navigation Links */
-.menu nav ul li a {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #ffffff;
+li a {
   text-decoration: none;
-  border-radius: 4px;
+  color: #fff;
+  padding: 10px 20px;
+  display: block;
+  border-radius: 25px;
   transition: all 0.3s ease;
-  letter-spacing: 0.3px;
+  background-color: transparent;
+  position: relative;
+  z-index: 1;
 }
 
-/* Link Hover Effects */
-.menu nav ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Hover effect for links */
+li a:hover:not(.dropdown-toggle) {
+  color: #b59ae1;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(181, 154, 225, 0.4);
+  transform: translateY(-3px);
 }
 
-/* Active Link */
-.menu nav ul li a.active,
-.menu nav ul li a.router-link-active {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Active/current page */
+li a.active {
+  background-color: #fff;
+  color: #b59ae1;
+  box-shadow: 0 5px 15px rgba(181, 154, 225, 0.4);
 }
 
-/* Add responsive adjustments */
+/* Dropdown styling */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 10px 0;
+  box-shadow: 0 5px 15px rgba(181, 154, 225, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: block;
+  flex-direction: column;
+  z-index: 200;
+}
+
+.dropdown-menu li {
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  color: #b59ae1;
+  border-radius: 0;
+  padding: 8px 20px;
+  text-align: center;
+}
+
+.dropdown-menu li a:hover {
+  background: #f2e6ff;
+  color: #9e78dd;
+  transform: translateY(0);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scaleY(1);
+}
+
+.dropdown:hover .dropdown-toggle .arrow {
+  transform: rotate(180deg);
+}
+
+/* Decorative elements */
+.menu-star {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.6);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.star1 {
+  top: 8px;
+  left: 20px;
+  font-size: 14px;
+}
+
+.star2 {
+  top: 10px;
+  right: 60px;
+  font-size: 12px;
+  animation-delay: 1.5s;
+}
+
+.menu-moon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: inset -4px 1px 0 2px #faedff;
+  filter: drop-shadow(0 0 3px rgba(250, 237, 255, 0.8));
+  top: 8px;
+  right: 20px;
+  transform: rotate(45deg);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Twinkle animation for decorations */
+@keyframes twinkle {
+  0% { opacity: 0.5; filter: drop-shadow(0 0 2px rgba(250, 237, 255, 0.7)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 5px rgba(250, 237, 255, 0.9)); }
+  100% { opacity: 0.5; filter: drop-shadow(0 0 2px rgba(250, 237, 255, 0.7)); }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .menu nav ul {
-    flex-direction: column;
-    gap: 6px;
-    padding: 5px 0;
+  .nav-container {
+    padding: 10px 0;
   }
   
-  .menu nav ul li {
-    width: 90%;
+  ul li {
+    margin: 0 5px;
   }
   
-  .menu nav ul li a {
-    width: 100%;
-    text-align: center;
-    padding: 10px 16px;
+  li a {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .dropdown-menu {
+    min-width: 150px;
   }
 }
