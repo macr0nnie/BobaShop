@@ -8,7 +8,6 @@ import { AboutComponent } from './about/about.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { DeleteEmployeeComponent } from './employee/delete-employee/delete-employee.component';
-import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
 import { NewEmployeeComponent } from './employee/new-employee/new-employee.component';
 import { AddNewDrinkComponent } from './add-new-drink/add-new-drink.component';
 import { GraphComponent } from './drinks/graph/graph.component';
@@ -22,7 +21,6 @@ export const routes: Routes = [
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'employee/new-employee', component: NewEmployeeComponent },
-  { path: 'employee/update', component: UpdateEmployeeComponent },
   { path: 'employee/delete', component: DeleteEmployeeComponent },
   { path: 'new-drink', component: AddNewDrinkComponent },
   { path: 'graph', component: GraphComponent },

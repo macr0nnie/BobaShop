@@ -1,11 +1,5 @@
 <div class="container">
   <h1>Employee Management</h1>
-
-  <!-- API Error Message -->
-  <div *ngIf="apiError" class="api-error">
-    <i class="error-icon">⚠️</i> {{ apiError }}
-  </div>
-
   <!-- Filter Section -->
   <div class="filter-section">
     <h3>Filter Employees</h3>
@@ -15,13 +9,11 @@
           <label for="id">Employee ID</label>
           <input type="number" id="id" formControlName="id" placeholder="Filter by ID">
         </div>
-        
         <div class="filter-group">
           <label for="name">Name</label>
           <input type="text" id="name" formControlName="name" placeholder="Filter by name">
         </div>
       </div>
-      
       <div class="filter-row">
         <div class="filter-group">
           <label for="position">Position</label>
@@ -50,33 +42,10 @@
       
       <div class="filter-actions">
         <button type="submit" class="btn-primary">Apply Filters</button>
-        <button type="button" class="btn-secondary" (click)="resetFilters()">Reset</button>
       </div>
     </form>
   </div>
-
-  <!-- Search Section -->
-  <div class="search-section">
-    <div class="search-box">
-      <input 
-        type="text" 
-        [(ngModel)]="searchTerm" 
-        (ngModelChange)="onSearchChange($event)"
-        placeholder="Search within results..."
-      >
-    </div>
-  </div>
-
-  <!-- Selected Employee Display -->
-  <div *ngIf="setSelectedEmployee" class="employee-details">
-    <h3>Employee Details</h3>
-    <p><strong>ID:</strong> {{ setSelectedEmployee.id }}</p>
-    <p><strong>Name:</strong> {{ setSelectedEmployee.name }}</p>
-    <p><strong>Position:</strong> {{ setSelectedEmployee.position }}</p>
-    <p><strong>Salary:</strong> {{ formatSalary(setSelectedEmployee.salary) }}</p>
-    <p><strong>Shift:</strong> {{ setSelectedEmployee.shift }}</p>
-  </div>
-
+ 
   <!-- Employees Table -->
   <div *ngIf="loading" class="loading">Loading employees...</div>
   
@@ -91,31 +60,11 @@
     </div>
     
     <table>
-      <thead>
-        <tr>
-          <th (click)="sortEmployees('id')">
-            ID <span class="sort-icon">{{ getSortIcon('id') }}</span>
-          </th>
-          <th (click)="sortEmployees('name')">
-            Name <span class="sort-icon">{{ getSortIcon('name') }}</span>
-          </th>
-          <th (click)="sortEmployees('position')">
-            Position <span class="sort-icon">{{ getSortIcon('position') }}</span>
-          </th>
-          <th (click)="sortEmployees('salary')">
-            Salary <span class="sort-icon">{{ getSortIcon('salary') }}</span>
-          </th>
-          <th (click)="sortEmployees('shift')">
-            Shift <span class="sort-icon">{{ getSortIcon('shift') }}</span>
-          </th>
-        </tr>
-      </thead>
       <tbody>
         <tr *ngFor="let emp of filteredEmployees" (click)="setSelectedEmployee = emp">
           <td>{{ emp.id }}</td>
           <td>{{ emp.name }}</td>
           <td>{{ emp.position }}</td>
-          <td>{{ formatSalary(emp.salary) }}</td>
           <td>{{ emp.shift }}</td>
         </tr>
       </tbody>
