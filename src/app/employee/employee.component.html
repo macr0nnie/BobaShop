@@ -44,21 +44,13 @@
         <button type="submit" class="btn-primary">Apply Filters</button>
       </div>
     </form>
-  </div>
- 
+  </div> 
   <!-- Employees Table -->
-  <div *ngIf="loading" class="loading">Loading employees...</div>
-  
-  <div *ngIf="!loading && filteredEmployees.length === 0" class="no-results">
-    No employees found matching your criteria.
-  </div>
-
-  <div *ngIf="!loading && filteredEmployees.length > 0" class="table-container">
+  <div *ngIf="filteredEmployees.length > 0" class="table-container">
     <div class="results-summary">
       <span class="result-count">{{ filteredEmployees.length }} employee(s) found</span>
       <span *ngIf="filterApplied" class="filter-indicator">Filters applied</span>
     </div>
-    
     <table>
       <tbody>
         <tr *ngFor="let emp of filteredEmployees" (click)="setSelectedEmployee = emp">

@@ -14,7 +14,6 @@ export interface Employee{
   salary: number;
   shift: string;
 }
-
 export interface EmployeeFilter {
   id? : number;
   name? : string;
@@ -24,7 +23,6 @@ export interface EmployeeFilter {
   minSalary? : number;   
   sortColumn? : string;
 }
-
 @Component({
   selector: 'app-employee',
   standalone: true,
@@ -32,6 +30,7 @@ export interface EmployeeFilter {
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
 })
+
 export class EmployeeComponent implements OnInit {
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
@@ -59,7 +58,6 @@ export class EmployeeComponent implements OnInit {
         this.searchTerm = term;
         this.applySearch();
       });
-
     // Initialize filter form
     this.filterForm = this.fb.group({
       id: [''],
@@ -69,14 +67,12 @@ export class EmployeeComponent implements OnInit {
       shift: [''],
     });
   }
-
   ngOnInit(): void {
     this.loadEmployees();
   }
   loadEmployees(): void {
     this.loading = true;
     this.apiError = '';
-
     this.employeeService.getAllEmployees().subscribe({
       next: (data) => {
         this.employees = data;
@@ -95,30 +91,24 @@ export class EmployeeComponent implements OnInit {
   onSearchChange(term: string): void {
     this.searchSubject.next(term);
   }
-
   applySearch(): void {
     if (!this.searchTerm) {
       this.applyFilters(); // If search is cleared, just show filtered results
       return;
     }
   }
-
   applyFilters(): void {
     this.loading = true;
     this.apiError = '';
     this.filterApplied = true;
-
     const filter: EmployeeFilter = {};
-
     const formValues = this.filterForm.value;
     if (formValues.id) filter.id = parseInt(formValues.id);
     if (formValues.name) filter.name = formValues.name;
     if (formValues.position) filter.position = formValues.position;
    // if (formValues.salary) filter.salary = parseInt(formValues.salary);
     if (formValues.shift) filter.shift = formValues.shift;
-
     // Check if any filter is applied
     const hasFilters = Object.keys(filter).length > 0; //how to get it too work
   }
-
 }
