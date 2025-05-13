@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
+import { CustomTablesComponent } from './custom/custom-tables/custom-tables.component';
 
 @Component({
   selector: 'app-root',
