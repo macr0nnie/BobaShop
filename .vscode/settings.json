@@ -1,5 +1,6 @@
 {
     "editor.dropIntoEditor.preferences": [
         
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
